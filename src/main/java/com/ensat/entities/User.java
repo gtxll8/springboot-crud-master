@@ -17,7 +17,7 @@ public class User {
     private Integer id;
 
 
-
+    // to see how to generate UUID on a new record
     @Version
     private Integer version;
 
