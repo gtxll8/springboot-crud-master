@@ -9,10 +9,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 /**
@@ -37,17 +34,13 @@ public class RestApiController {
     }
 
     // -------------------Create a User-------------------------------------------
-    @RequestMapping(value = "user", method = RequestMethod.POST)
-    public String saveUser(User user) {
-        userService.saveUser( user ); {
 
-        logger.info("Creating User : {}", user);
+    @PostMapping(value = "/user/create", consumes = "application/json")
+    @ResponseBody
+        public String add(@RequestBody User user) {
+            return String.valueOf( userService.saveUser(user) );
 
-        userService.saveUser( user );
-
-          return  "OK";
     }
-}
 }
 
 
