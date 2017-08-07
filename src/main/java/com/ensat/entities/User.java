@@ -1,5 +1,6 @@
 package com.ensat.entities;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -21,26 +22,17 @@ public class User {
     @Version
     private Integer version;
 
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
-    @Column(name = "uuid", nullable = false)
-    private UUID uuid;
+    private UUID uuid = UUID.randomUUID();
 
-    private String email;
+    private String email ;
     private String name;
     private String uname;
     private String company;
 
-    public UUID getUuid() {
-        return uuid;
-    }
 
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
+    public UUID getUuid() { return uuid;}
+
+    public void setUuid(UUID uuid) { this.uuid = uuid;}
 
     public String getUname() {
         return uname;
