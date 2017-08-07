@@ -22,7 +22,7 @@ public class User {
     @Version
     private Integer version;
 
-    private UUID uuid = UUID.randomUUID();
+    private String uuid = UUID.randomUUID().toString();
 
     private String email ;
     private String name;
@@ -30,9 +30,9 @@ public class User {
     private String company;
 
 
-    public UUID getUuid() { return uuid;}
+    public String getUuid() { return uuid;}
 
-    public void setUuid(UUID uuid) { this.uuid = uuid;}
+    public void setUuid(String uuid) { this.uuid = uuid;}
 
     public String getUname() {
         return uname;
