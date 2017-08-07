@@ -56,7 +56,7 @@ public class UserController {
     }
 
     /**
-     * New product.
+     * New user.
      *
      * @param model
      * @return
@@ -90,5 +90,7 @@ public class UserController {
         userService.deleteUser(id);
         return "redirect:/users";
     }
+
+
 
 }

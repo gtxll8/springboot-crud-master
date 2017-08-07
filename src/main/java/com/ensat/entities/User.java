@@ -22,7 +22,7 @@ public class User {
     @Version
     private Integer version;
 
-    private String uuid = UUID.randomUUID().toString();
+    private String uuid = UUID.randomUUID().toString().replaceAll("-", "");
 
     private String email ;
     private String name;

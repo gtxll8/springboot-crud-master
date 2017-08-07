@@ -26,7 +26,7 @@ DROP TABLE IF EXISTS `user`;
 SET character_set_client = utf8mb4 ;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `uuid` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+  `uuid` varchar(255) CHARACTER SET utf8mb4 NOT NULL UNIQUE,
   `version` varchar(512) CHARACTER SET utf8 DEFAULT NULL,
   `uname` varchar(512) CHARACTER SET utf8 DEFAULT NULL,
   `name` varchar(512) CHARACTER SET utf8 DEFAULT NULL,

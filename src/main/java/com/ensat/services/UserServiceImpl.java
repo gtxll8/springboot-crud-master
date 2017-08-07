@@ -13,10 +13,13 @@ public class UserServiceImpl implements UserService {
 
     private ProductRepository productRepository;
 
+
     @Autowired
     public void setProductRepository(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
+
+
 
     @Override
     public Iterable<User> listAllUsers() {
@@ -37,5 +40,12 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(Integer id) {
         productRepository.delete(id);
     }
+
+    @Override
+    public boolean isUserExist(User user) {
+        return false;
+    }
+
+
 
 }
