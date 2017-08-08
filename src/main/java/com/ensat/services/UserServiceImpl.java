@@ -51,9 +51,4 @@ public class UserServiceImpl implements UserService {
         return true;
     }
 
-    @Override
-    public Long count() {
-        return null;
-    }
-
 }
