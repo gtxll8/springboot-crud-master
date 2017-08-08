@@ -37,15 +37,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(Integer id) {
+    public Integer deleteUser(Integer id) {
         productRepository.delete(id);
+        return id;
     }
 
     @Override
-    public boolean isUserExist(User user) {
-        return false;
+    public boolean isUserExist(Integer id) {
+        if (getUserByID(id) == null){
+            return false;
+        }
+        return true;
     }
 
-
+    @Override
+    public Long count() {
+        return null;
+    }
 
 }

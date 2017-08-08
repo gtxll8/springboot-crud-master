@@ -1,16 +1,14 @@
 package com.ensat.services;
 
-import com.ensat.util.CustomErrorType;
 import com.ensat.entities.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.List;
 
 /**
  * Created by gcalinescu on 02/08/2017.
@@ -26,21 +24,46 @@ public class RestApiController {
 
     // -------------------Retrieve All Users---------------------------------------------//
 
-    @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public ResponseEntity<Iterable<User>> getAllUsers() {
-        Iterable<User> products = userService.listAllUsers();
-
-        return new ResponseEntity<Iterable<User>>(products, HttpStatus.ACCEPTED);
+    @GetMapping(value = "/users", produces = "application/json")
+    public Iterable<User> GetUsers(){
+        return (List) userService.listAllUsers();
     }
 
+    // -------------------Show a User-------------------------------------------
+    @GetMapping(value = "/users/{id}", produces = "application/json")
+    public ResponseEntity getCustomer(@PathVariable("id") Integer id) {
+
+        User user = userService.getUserByID(id);
+        if (user == null) {
+            return new ResponseEntity("No Customer found for ID " + id, HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity(user, HttpStatus.OK);
+    }
     // -------------------Create a User-------------------------------------------
 
-    @PostMapping(value = "/user/create", consumes = "application/json")
-    @ResponseBody
-        public String add(@RequestBody User user) {
-            return String.valueOf( userService.saveUser(user) );
+    @PostMapping(value = "/user/new", consumes = "application/json")
+    public ResponseEntity createUser(@RequestBody User user) {
 
+        userService.saveUser(user);
+
+        return new ResponseEntity(user, HttpStatus.OK);
     }
+
+    // -------------------Delete a User-------------------------------------------
+    @RequestMapping(value = "/users/delete/{id}", consumes = "application/json")
+    public ResponseEntity deleteUser(@PathVariable("id") Integer id) {
+
+        if (userService.isUserExist(id)) {
+            userService.deleteUser(id);
+            return new ResponseEntity("User with ID = " + id + " was now deleted", HttpStatus.OK);
+        }
+        return new ResponseEntity("No User found for ID " + id, HttpStatus.NOT_FOUND);
+    }
+
+
+
+
 }
 
 
