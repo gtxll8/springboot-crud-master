@@ -12,8 +12,6 @@ public interface UserService {
 
     boolean isUserExist(Integer id);
 
-    Long count();
-
     Integer deleteUser(Integer id);
 
 }

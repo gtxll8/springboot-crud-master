@@ -1,9 +1,11 @@
 package com.ensat.services;
 
 import com.ensat.entities.User;
-import com.ensat.repositories.ProductRepository;
+import com.ensat.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * User service implement.
@@ -11,34 +13,33 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private ProductRepository productRepository;
+    private UserRepository userRepository;
 
 
     @Autowired
-    public void setProductRepository(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
-
 
 
     @Override
     public Iterable<User> listAllUsers() {
-        return productRepository.findAll();
+        return userRepository.findAll();
     }
 
     @Override
     public User getUserByID(Integer id) {
-        return productRepository.findOne(id);
+        return userRepository.findOne(id);
     }
 
     @Override
     public User saveUser(User user) {
-        return productRepository.save( user );
+        return userRepository.save( user );
     }
 
     @Override
     public Integer deleteUser(Integer id) {
-        productRepository.delete(id);
+        userRepository.delete(id);
         return id;
     }
 
