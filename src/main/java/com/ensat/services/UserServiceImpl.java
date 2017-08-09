@@ -28,6 +28,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Iterable<User> listByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    @Override
     public User getUserByID(Integer id) {
         return userRepository.findOne(id);
     }
