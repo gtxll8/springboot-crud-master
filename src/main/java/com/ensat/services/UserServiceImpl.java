@@ -19,29 +19,29 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
+    // public Iterable<User> findByEmailAddress(String email) {return userRepository.findByEmailAddress(email);}
 
-    @Override
     public Iterable<User> listAllUsers() {
         return userRepository.findAll();
     }
 
-    @Override
+
     public User getUserByID(Integer id) {
         return userRepository.findOne(id);
     }
 
-    @Override
+
     public User saveUser(User user) {
         return userRepository.save( user );
     }
 
-    @Override
+
     public Integer deleteUser(Integer id) {
         userRepository.delete(id);
         return id;
     }
 
-    @Override
+
     public boolean isUserExist(Integer id) {
         if (getUserByID(id) == null){
             return false;

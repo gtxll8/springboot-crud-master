@@ -24,7 +24,7 @@ public class User {
 
     private String uuid = UUID.randomUUID().toString().replaceAll("-", "");
 
-    private String email ;
+    private String email;
     private String name;
     private String uname;
     private String company;

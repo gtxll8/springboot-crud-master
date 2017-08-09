@@ -29,6 +29,19 @@ public class RestApiController {
         return (List) userService.listAllUsers();
     }
 
+    // --- test
+
+    @GetMapping(value = "/users/email/{email}", produces = "application/json")
+    public ResponseEntity findByEmail(@PathVariable("email") String email) {
+
+        Iterable<User> user = userService.listAllUsers();
+        if (user == null) {
+            return new ResponseEntity("No Customer found with this email " + email, HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity(user, HttpStatus.OK);
+    }
+
     // -------------------Show a User-------------------------------------------
     @GetMapping(value = "/users/{id}", produces = "application/json")
     public ResponseEntity getUserID(@PathVariable("id") Integer id) {
