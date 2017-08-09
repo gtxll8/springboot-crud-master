@@ -31,7 +31,7 @@ public class RestApiController {
 
     // -------------------Show a User-------------------------------------------
     @GetMapping(value = "/users/{id}", produces = "application/json")
-    public ResponseEntity getCustomer(@PathVariable("id") Integer id) {
+    public ResponseEntity getUserID(@PathVariable("id") Integer id) {
 
         User user = userService.getUserByID(id);
         if (user == null) {

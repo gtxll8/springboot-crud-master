@@ -6,8 +6,6 @@ public interface UserService {
 
     Iterable<User> listAllUsers();
 
-    Iterable<User> listByEmail(String email);
-
     User getUserByID(Integer id);
 
     User saveUser(User user);

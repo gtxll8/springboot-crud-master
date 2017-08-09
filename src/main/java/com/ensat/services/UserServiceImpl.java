@@ -5,8 +5,6 @@ import com.ensat.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 /**
  * User service implement.
  */
@@ -25,11 +23,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public Iterable<User> listAllUsers() {
         return userRepository.findAll();
-    }
-
-    @Override
-    public Iterable<User> listByEmail(String email) {
-        return userRepository.findByEmail(email);
     }
 
     @Override
