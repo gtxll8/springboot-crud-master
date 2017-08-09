@@ -48,7 +48,7 @@ public class UserController {
         return "usershow";
     }
 
-    // Afficher le formulaire de modification du User
+    // Edit user by ID
     @RequestMapping("user/edit/{id}")
     public String edit(@PathVariable Integer id, Model model) {
         model.addAttribute("user", userService.getUserByID(id));
