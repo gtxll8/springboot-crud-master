@@ -12,6 +12,8 @@ public interface UserService {
 
     User saveUser(User user);
 
+    User findByEmail(String email);
+
     boolean isUserExist(Integer id);
 
     Integer deleteUser(Integer id);

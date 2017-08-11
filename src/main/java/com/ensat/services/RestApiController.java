@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,10 +32,10 @@ public class RestApiController {
 
     // --- test
 
-    @GetMapping(value = "/users/email/{email}", produces = "application/json")
+    @RequestMapping(value = "/users/email/{email}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity findByEmail(@PathVariable("email") String email) {
 
-        Iterable<User> user = userService.listAllUsers();
+        User user = userService.findByEmail(email);
         if (user == null) {
             return new ResponseEntity("No Customer found with this email " + email, HttpStatus.NOT_FOUND);
         }
@@ -64,7 +65,7 @@ public class RestApiController {
     }
 
     // -------------------Delete a User-------------------------------------------
-    @RequestMapping(value = "/users/delete/{id}", consumes = "application/json")
+   @RequestMapping (value = "/users/delete/{id}", consumes = "application/json")
     public ResponseEntity deleteUser(@PathVariable("id") Integer id) {
 
         if (userService.isUserExist(id)) {
